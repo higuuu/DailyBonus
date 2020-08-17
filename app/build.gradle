@@ -23,12 +23,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    dataBinding {
+        enabled = true
+    }
 
 }
 
 dependencies {
     //material desighn
     implementation 'com.google.android.material:material:1.1.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.2.0'
 
     // Dagger
     def dagger_version = "2.26"
