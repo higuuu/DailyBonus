@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/make_quiz"
-        android:icon="@drawable/ic_input_black_24dp"
+        android:icon="@drawable/ic_input_white_24dp"
         android:title="@string/input"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/home"
-        android:icon="@drawable/ic_home_black_24dp"
+        android:icon="@drawable/ic_home_white_24dp"
         android:title="@string/home"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/setting"
-        android:icon="@drawable/ic_setting_black_24dp"
+        android:icon="@drawable/ic_setting_white_24dp"
         android:title="@string/setting"
         app:showAsAction="never" />
 </menu>
