@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 class SettingFragment : Fragment() {
     // TODO: Rename and change types of parameters
-    lateinit var binding:FragmentSettingBinding
+    lateinit var binding: FragmentSettingBinding
 
     @Inject
     lateinit var factory: SettingViewModelFactory
@@ -27,13 +27,16 @@ class SettingFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         // FragmentはonAttachでInjectする
-
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+    }
+
+    fun addSetting() {
+        inputSettingViewModel.addSettingText(binding.editText.text.toString())
     }
 
     override fun onCreateView(
@@ -45,11 +48,23 @@ class SettingFragment : Fragment() {
             DataBindingUtil.inflate<FragmentSettingBinding>(
                 inflater, R.layout.fragment_setting, container, false
             )
-        inputSettingViewModel.settingText.observe(viewLifecycleOwner, Observer {
-            binding.settingText.text = it
-        })
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setting, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        inputSettingViewModel.settingText.observe(viewLifecycleOwner, Observer {
+            println("aaa")
+            binding.settingText.text = it
+        })
+
+        binding.button.setOnClickListener {
+            addSetting()
+            println("touch")
+        }
+
     }
 
 }
