@@ -7,10 +7,16 @@ import com.example.dailybonus.R
 import com.example.dailybonus.databinding.ActivityMainBinding
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasAndroidInjector
+import javax.inject.Inject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HasAndroidInjector {
 
     private lateinit var binding: ActivityMainBinding
+
+    @Inject
+    lateinit var fragmentInjector: DispatchingAndroidInjector<Any>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
@@ -22,6 +28,10 @@ class MainActivity : AppCompatActivity() {
             .commit()
 
         binding.bottomNavigation.selectedItemId = R.id.setting
+    }
+
+    override fun androidInjector(): AndroidInjector<Any> {
+        return fragmentInjector
     }
 
 }
