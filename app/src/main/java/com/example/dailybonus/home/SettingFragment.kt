@@ -23,7 +23,7 @@ class SettingFragment : Fragment() {
 
     @Inject
     lateinit var factory: SettingViewModelFactory
-    private val inputQuizTextViewModel: SettingViewModel by viewModels { factory }
+    private val inputSettingViewModel: SettingViewModel by viewModels { factory }
 
     override fun onAttach(context: Context) {
         // FragmentはonAttachでInjectする
@@ -40,6 +40,14 @@ class SettingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        binding =
+            DataBindingUtil.inflate<FragmentSettingBinding>(
+                inflater, R.layout.fragment_setting, container, false
+            )
+        inputSettingViewModel.settingText.observe(viewLifecycleOwner, Observer {
+            binding.settingText.text = it
+        })
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_setting, container, false)
     }
